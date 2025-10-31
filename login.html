@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script_aula3010.js"></script>
+</head>
+<body>
+  <main class="card">
+    <div class="header">
+      <h1>Entrar</h1>
+      <span class="etiqueta">LocalStorage</span>
+    </div>
+    <p class="desc">Faça login com e-mail e senha cadastrados (exemplo didático).</p>
+
+    <label for="email">E-mail</label>
+    <input id="email" type="email" placeholder="seu@email.com">
+
+    <label for="senha">Senha</label>
+    <input id="senha" type="password" placeholder="••••••••">
+
+    <button onclick="entrar()">Entrar</button>
+    <button class="secondary" onclick="irParaCadastro()">Cadastrar</button>
+
+    <div id="mensagem" class="msg"></div>
+
+    <hr>
+    <nav>
+      <a class="link" href="cadastro.html">Ir para Cadastro</a>
+      <a class="link" href="usuarios.html">Ver usuários</a>
+    </nav>
+  </main>
+</body>
+</html>

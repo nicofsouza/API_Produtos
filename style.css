@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+    font-family: system-ui, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f6f7fb;
+    color: #111;
+}
+
+.container {
+    max-width: 980px;
+    margin: 32px auto;
+    padding: 0 16px;
+}
+
+h1 {
+    margin: 0 0 16px;
+}
+
+.card {
+    background: #0f766e;
+    border: 1px solid #e7e9ee;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, .06);
+}
+
+.linha {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.linha-check {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+}
+
+.botoes {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+button {
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #1d4ed8;
+    color: white;
+}
+
+button:hover {
+    filter: brightness(1.05);
+}
+
+.mensagem {
+    margin-top: 8px;
+    color: #0f766e;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+th,
+td {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #0f766e;
+}
+
+td .acao {
+    display: inline-flex;
+    gap: 6px;
+}
+
+td .acao button {
+    background: #475569;
+}
+
+td .acao button.excluir {
+    background: #b91c1c;
+}
