@@ -1,38 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+   
   <meta charset="UTF-8">
+   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro</title>
+    <title>Cadastro</title>
+   
   <link rel="stylesheet" href="styles.css">
+     
   <script defer src="script_aula3010.js"></script>
 </head>
+
 <body>
-  <main class="card">
-    <div class="header">
-      <h1>Cadastrar usuário</h1>
-      <span class="etiqueta">LocalStorage</span>
-    </div>
-    <p class="desc">Preencha os campos e salve. O cadastro ficará no seu navegador.</p>
+    <main class="card">
+        <div class="header">
+            <h1>Cadastrar usuário</h1>
+            <span class="etiqueta">LocalStorage</span>
+          </div>
+        <p class="desc">Preencha os campos e salve. O cadastro ficará no seu navegador.</p>
 
-    <label for="nome">Nome</label>
-    <input id="nome" type="text" placeholder="Seu nome completo">
+        <input id="identificadorAluno" type="hidden" value="Cadastrado por Nicolas Ferreira Souza - RM - 1143141726">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" placeholder="Seu nome completo">
 
-    <label for="email">E-mail</label>
-    <input id="email" type="email" placeholder="seu@email.com">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="seu@email.com">
 
-    <label for="senha">Senha</label>
-    <input id="senha" type="password" placeholder="Mín. 6 caracteres">
+        <label for="senha">Senha</label>
+        <input id="senha" type="password" placeholder="Mín. 6 caracteres">
 
-    <button onclick="salvarCadastro()">Salvar cadastro</button>
-    <button class="secondary" onclick="voltarParaLogin()">Voltar ao login</button>
-    <div id="mensagem" class="msg"></div>
+        <button onclick="salvarCadastro()">Salvar cadastro</button>
+        <button class="secondary" onclick="voltarParaLogin()">Voltar ao login</button>
+        <div id="mensagem" class="msg"></div>
 
+       
     <hr>
-    <nav>
-      <a class="link" href="home.html">Ir para Login</a>
-      <a class="link" href="usuarios.html">Ver usuários</a>
-    </nav>
+        <nav>
+            <a class="link" href="home.html">Ir para Login</a>
+            <a class="link" href="usuarios.html">Ver usuários</a>
+          </nav>
+     
   </main>
 </body>
+
 </html>

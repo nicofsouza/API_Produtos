@@ -1,4 +1,10 @@
+// app.js
+
 const BASE_URL = 'http://localhost:3002/api/produtos';
+
+// MODIFICADO: Definição da variável OBRIGATÓRIA de autoria.
+//            SUBSTITUA ESTA LINHA COM SEUS DADOS REAIS!
+const IDENTIFICADOR_ALUNO = "Cadastrado por Nicolas Ferreira Souza - RM - 1143141726";
 
 // --- utilidades ---
 function mostrarMensagem(texto, id = 'lblMensagem') {
@@ -9,11 +15,13 @@ function limparMensagem() { mostrarMensagem(''); mostrarMensagem('', 'lblMensage
 
 function lerCamposDoFormulario() {
     return {
-        nome: document.getElementById('txtNome').value.trim(),
+        nome_do_Produto: document.getElementById('txtNome').value.trim(),
         preco: Number(document.getElementById('txtPreco').value),
         categoria: document.getElementById('cboCategoria').value,
         estoque: Number(document.getElementById('txtEstoque').value),
-        ativo: document.getElementById('chkAtivo').checked
+        ativo: document.getElementById('chkAtivo').checked,
+        // MODIFICADO: Incluindo o identificador no objeto de dados para o POST
+        identificadorAluno: IDENTIFICADOR_ALUNO
     };
 }
 
@@ -23,19 +31,20 @@ function preencherTabela(produtos) {
     produtos.forEach(p => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-      <td>${p.id}</td>
-      <td>${p.nome}</td>
-      <td>R$ ${p.preco.toFixed(2)}</td>
-      <td>${p.categoria}</td>
-      <td>${p.estoque}</td>
-      <td>${p.ativo ? 'Sim' : 'Não'}</td>
-      <td>
-        <span class="acao">
-          <button onclick="aoEditar(${p.id})">Editar</button>
-          <button class="excluir" onclick="aoExcluir(${p.id})">Excluir</button>
-        </span>
-      </td>
-    `;
+      <td>${p.id}</td>
+      <td>${p.nome}</td>
+      <td>R$ ${p.preco.toFixed(2)}</td>
+      <td>${p.categoria}</td>
+      <td>${p.estoque}</td>
+      <td>${p.ativo ? 'Sim' : 'Não'}</td>
+      <td>${p.identificadorAluno || 'N/A'}</td> 
+      <td>
+        <span class="acao">
+          <button onclick="aoEditar(${p.id})">Editar</button>
+          <button class="excluir" onclick="aoExcluir(${p.id})">Excluir</button>
+        </span>
+      </td>
+    `;
         corpo.appendChild(tr);
     });
 }
@@ -63,6 +72,7 @@ function aoLimpar() {
 async function aoCadastrar() {
     try {
         limparMensagem();
+        // Usa a função modificada 'lerCamposDoFormulario'
         const dados = lerCamposDoFormulario();
         if (!dados.nome || !dados.categoria || isNaN(dados.preco) || isNaN(dados.estoque)) {
             mostrarMensagem('Preencha os campos corretamente.'); return;
