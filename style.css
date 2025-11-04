@@ -1,3 +1,5 @@
+/* style.css (Projeto API - Tema Escuro Consistente) */
+
 * {
     box-sizing: border-box;
     font-family: system-ui, Arial, sans-serif;
@@ -7,6 +9,7 @@ body {
     margin: 0;
     background: #f6f7fb;
     color: #111;
+    /* Cor geral do texto, mas será sobrescrita */
 }
 
 .container {
@@ -17,18 +20,32 @@ body {
 
 h1 {
     margin: 0 0 16px;
+    color: #111;
+    /* Mantido se for título fora dos cards */
 }
 
+/* Aplicando o fundo verde escuro para os cards e o texto branco */
 .card {
     background: #0f766e;
+    /* Fundo verde escuro do seu tema */
     border: 1px solid #e7e9ee;
     border-radius: 12px;
     padding: 16px;
     margin-bottom: 16px;
     box-shadow: 0 1px 3px rgba(16, 24, 40, .06);
+    color: white;
+    /* NOVO: Torna todo o texto dentro do card branco */
 }
 
+/* Títulos dentro dos cards (ex: "Lista de Produtos") */
+.card h1 {
+    color: white;
+    /* Títulos brancos dentro do card */
+}
+
+/* Ajuste de labels para garantir que fiquem brancos */
 .linha {
+    /* Mantido: display: grid... */
     display: grid;
     grid-template-columns: 160px 1fr;
     gap: 12px;
@@ -49,6 +66,8 @@ select {
     padding: 10px;
     border: 1px solid #d0d5dd;
     border-radius: 8px;
+    /* NOVO: Torna os campos de entrada brancos (o texto dentro será preto) */
+    background: white;
 }
 
 .botoes {
@@ -72,35 +91,78 @@ button:hover {
 
 .mensagem {
     margin-top: 8px;
-    color: #0f766e;
+    color: white;
+    /* Mensagens brancas no fundo escuro */
 }
 
+/* Estilos da Tabela (Fundo do Card já a define) */
+/* ===== TABELA ===== */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 8px;
+    background: #0f766e;
+    color: #111;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 12px;
 }
 
-th,
-td {
-    border-bottom: 1px solid #e5e7eb;
-    padding: 10px;
+th, td {
+    padding: 12px 10px;
     text-align: left;
+    border-bottom: 1px solid #111;
+    background: #0f766e; /* 🔥 FORÇA fundo branco */
+    color: #111;
 }
 
 th {
     background: #0f766e;
+    color: #111;
+    font-weight: 600;
 }
 
+tr:nth-child(even) {
+    background: #0f766e;
+}
+
+/* ===== AÇÕES NA TABELA ===== */
+/* ===== BOTÕES AÇÕES NA TABELA (um em cima do outro) ===== */
 td .acao {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column; /* 🔥 Coloca um em cima do outro */
     gap: 6px;
+    align-items: flex-start;
 }
 
 td .acao button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: white;
+    width: 80px; /* 🔥 Mantém todos alinhados e com mesmo tamanho */
+    text-align: center;
+}
+
+td .acao button.editar {
     background: #475569;
 }
 
 td .acao button.excluir {
+    background: #dc2626;
+}
+
+
+/* Estilização dos botões para que se destaquem no fundo escuro */
+td .acao button {
+    background: #475569;
+    /* Cinza escuro para Editar */
+    color: white;
+    padding: 8px 12px;
+    /* Garante que os botões tenham um bom tamanho */
+}
+
+td .acao button.excluir {
     background: #b91c1c;
+    /* Vermelho forte para Excluir */
+    color: white;
 }

@@ -1,3 +1,4 @@
+// api_produtos.js
 // API Express em memória
 const express = require('express');
 const cors = require('cors');
@@ -8,12 +9,13 @@ app.use(express.json());
 
 // "Banco" em memória
 let proximoId = 6;
+// Ajuste para incluir o novo campo nos produtos iniciais para evitar erros na listagem
 let produtos = [
-  { id: 1, nome: 'Teclado', preco: 120.90, categoria: 'Periféricos', estoque: 15, ativo: true },
-  { id: 2, nome: 'Mouse', preco: 79.50, categoria: 'Periféricos', estoque: 40, ativo: true },
-  { id: 3, nome: 'Monitor 24"', preco: 899.00, categoria: 'Monitores', estoque: 10, ativo: true },
-  { id: 4, nome: 'Cabo HDMI', preco: 35.00, categoria: 'Acessórios', estoque: 100, ativo: true },
-  { id: 5, nome: 'Notebook', preco: 4299.90, categoria: 'Computadores', estoque: 5, ativo: false }
+  { id: 1, nome: 'Teclado', preco: 120.90, categoria: 'Periféricos', estoque: 15, ativo: true, identificadorAluno: 'N/A - Produto Inicial' },
+  { id: 2, nome: 'Mouse', preco: 79.50, categoria: 'Periféricos', estoque: 40, ativo: true, identificadorAluno: 'N/A - Produto Inicial' },
+  { id: 3, nome: 'Monitor 24"', preco: 899.00, categoria: 'Monitores', estoque: 10, ativo: true, identificadorAluno: 'N/A - Produto Inicial' },
+  { id: 4, nome: 'Cabo HDMI', preco: 35.00, categoria: 'Acessórios', estoque: 100, ativo: true, identificadorAluno: 'N/A - Produto Inicial' },
+  { id: 5, nome: 'Notebook', preco: 4299.90, categoria: 'Computadores', estoque: 5, ativo: false, identificadorAluno: 'N/A - Produto Inicial' }
 ];
 
 
@@ -28,6 +30,8 @@ function validarProduto(dados) {
   if (!dados.categoria || String(dados.categoria).trim().length < 2) erros.push('Categoria é obrigatória.');
   if (dados.estoque == null || isNaN(Number(dados.estoque)) || Number(dados.estoque) < 0) erros.push('Estoque é obrigatório e deve ser um inteiro >= 0.');
   if (typeof dados.ativo !== 'boolean') erros.push('Ativo deve ser booleano (true/false).');
+  // MODIFICADO: Inclusão da validação do campo obrigatório de autoria
+  if (!dados.identificadorAluno || String(dados.identificadorAluno).trim().length < 5) erros.push('Identificador do aluno (Nome/RM) é obrigatório.');
   return erros;
 }
 
@@ -38,7 +42,9 @@ function cadastrarProduto(dados) {
     preco: Number(dados.preco),
     categoria: String(dados.categoria).trim(),
     estoque: Number(dados.estoque),
-    ativo: Boolean(dados.ativo)
+    ativo: Boolean(dados.ativo),
+    // MODIFICADO: Armazenando o identificador do aluno
+    identificadorAluno: String(dados.identificadorAluno).trim()
   };
   produtos.push(novo);
   return novo;
@@ -49,11 +55,13 @@ function atualizarProduto(id, dados) {
   if (idx === -1) return null;
   const atual = produtos[idx];
 
-  if (dados.nome !== undefined)      atual.nome = String(dados.nome).trim();
-  if (dados.preco !== undefined)     atual.preco = Number(dados.preco);
+  if (dados.nome !== undefined) atual.nome = String(dados.nome).trim();
+  if (dados.preco !== undefined) atual.preco = Number(dados.preco);
   if (dados.categoria !== undefined) atual.categoria = String(dados.categoria).trim();
-  if (dados.estoque !== undefined)   atual.estoque = Number(dados.estoque);
-  if (dados.ativo !== undefined)     atual.ativo = Boolean(dados.ativo);
+  if (dados.estoque !== undefined) atual.estoque = Number(dados.estoque);
+  if (dados.ativo !== undefined) atual.ativo = Boolean(dados.ativo);
+  // Opcional: Atualizar identificador se for fornecido no PUT
+  if (dados.identificadorAluno !== undefined) atual.identificadorAluno = String(dados.identificadorAluno).trim();
 
   produtos[idx] = atual;
   return atual;
@@ -104,4 +112,6 @@ app.delete('/api/produtos/:id', (req, res) => {
 });
 
 
-app.listen(3002);
+app.listen(3002, () => {
+  console.log('✅ Servidor rodando em http://localhost:3002/api/produtos');
+});

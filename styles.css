@@ -44,7 +44,9 @@ h1 {
 p.desc {
     margin: 0 0 16px 0;
     color: var(--muted);
-    font-size: 14px
+    font-size: 14px;
+    /* MODIFICADO: Aumentando o espaçamento após a descrição */
+    margin-bottom: 24px;
 }
 
 label {
@@ -52,7 +54,9 @@ label {
     margin: 10px 0 6px 0;
     color: var(--txt);
     font-weight: 600;
-    font-size: 14px
+    font-size: 14px;
+    /* MODIFICADO: Aumentando o espaçamento sob o label */
+    margin-bottom: 8px;
 }
 
 input {
@@ -127,6 +131,13 @@ a.link {
     margin-bottom: 8px
 }
 
+/* NOVO: Estilo para o campo de autoria no listagem de usuários */
+.autor-info {
+    display: block;
+    margin-top: 4px;
+    opacity: 0.8;
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -151,6 +162,12 @@ a.link {
 .acoes button {
     width: auto;
     padding: 8px 10px
+}
+
+/* Sugestão: Ajuste de cor para o botão de remover na lista de usuários */
+.user .acoes button {
+    background: #dc2626;
+    color: white;
 }
 
 nav {
